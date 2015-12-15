@@ -1,0 +1,1328 @@
+1
+00:00:03,449 --> 00:00:04,838
+- [Voiceover] Today
+we're going to talk about
+
+2
+00:00:04,838 --> 00:00:06,473
+UIKit Dynamics.
+
+3
+00:00:06,473 --> 00:00:09,309
+UIKit Dynamics it allows to give physics
+
+4
+00:00:09,309 --> 00:00:13,375
+to objects in UIKit using UIKit
+
+5
+00:00:13,375 --> 00:00:16,083
+and not having to go into Sprite Kit.
+
+6
+00:00:16,498 --> 00:00:19,653
+So, what we're going to do here is
+
+7
+00:00:20,384 --> 00:00:22,389
+open up a new project.
+
+8
+00:00:23,390 --> 00:00:26,354
+Make this single view iOS application
+
+9
+00:00:26,893 --> 00:00:29,195
+and I'm going to name this UIKit
+
+10
+00:00:30,030 --> 00:00:33,667
+Dynamics Screencast.
+
+11
+00:00:35,736 --> 00:00:38,071
+Make sure that the language is in Swift.
+
+12
+00:00:38,702 --> 00:00:40,273
+I'll hit next.
+
+13
+00:00:41,254 --> 00:00:42,557
+Create.
+
+14
+00:00:43,877 --> 00:00:45,054
+All right.
+
+15
+00:00:45,613 --> 00:00:47,508
+Now to start using UIKit Dynamics
+
+16
+00:00:47,508 --> 00:00:49,583
+we will go into the view controller.
+
+17
+00:00:50,111 --> 00:00:52,419
+I'm gonna move down my braces.
+
+18
+00:00:53,954 --> 00:00:55,489
+Make this a little bit more readable,
+
+19
+00:00:55,489 --> 00:00:58,098
+take our data received
+memory warning method
+
+20
+00:00:58,098 --> 00:00:59,716
+because we won't be needing it.
+
+21
+00:01:00,209 --> 00:01:02,963
+Then clear out our comments, okay.
+
+22
+00:01:03,856 --> 00:01:05,265
+All right, to start out
+
+23
+00:01:05,265 --> 00:01:07,500
+what we're going to do here is
+
+24
+00:01:08,193 --> 00:01:10,471
+I'm going to close that side panel.
+
+25
+00:01:11,071 --> 00:01:13,768
+Now I need to declare up here,
+
+26
+00:01:13,768 --> 00:01:15,200
+I need my class declaration.
+
+27
+00:01:15,200 --> 00:01:17,244
+I need to declare a new variable
+
+28
+00:01:17,244 --> 00:01:19,679
+of type UI dynamic animator.
+
+29
+00:01:19,679 --> 00:01:22,449
+What the dynamic animator does
+
+30
+00:01:22,449 --> 00:01:25,790
+is it actually mediates between
+
+31
+00:01:25,790 --> 00:01:28,547
+telling the physics engine what properties
+
+32
+00:01:28,547 --> 00:01:30,190
+dynamic items have.
+
+33
+00:01:30,190 --> 00:01:32,993
+So, we need to create one up here.
+
+34
+00:01:32,993 --> 00:01:35,228
+We're gonna have to make a var
+
+35
+00:01:36,381 --> 00:01:39,199
+and we're gonna name
+mine dynamic animator.
+
+36
+00:01:42,402 --> 00:01:44,492
+So type UI Dynamic Animator.
+
+37
+00:01:44,492 --> 00:01:47,474
+So now I have an instance of it.
+
+38
+00:01:47,474 --> 00:01:50,404
+What I want to do down in my viewDidLoad
+
+39
+00:01:50,404 --> 00:01:52,846
+is actually give it a reference view.
+
+40
+00:01:58,218 --> 00:02:01,080
+There we go and we get the
+option of reference view
+
+41
+00:02:01,080 --> 00:02:04,691
+and I'm just gonna call
+that on my super view.
+
+42
+00:02:05,895 --> 00:02:06,821
+All right.
+
+43
+00:02:06,821 --> 00:02:10,997
+Now we have a dynamic animator object
+
+44
+00:02:10,997 --> 00:02:13,077
+to do the mediation for us.
+
+45
+00:02:14,201 --> 00:02:16,459
+What we need to create
+now is actually an object
+
+46
+00:02:16,459 --> 00:02:19,172
+to give some dynamic properties to.
+
+47
+00:02:19,172 --> 00:02:21,341
+So, I'm just going to create a view.
+
+48
+00:02:24,312 --> 00:02:25,627
+Call it My View.
+
+49
+00:02:26,696 --> 00:02:28,782
+I've typed UI view.
+
+50
+00:02:28,782 --> 00:02:30,784
+Now to programmatically create one
+
+51
+00:02:30,784 --> 00:02:34,054
+we have to tell it what the frame is.
+
+52
+00:02:34,054 --> 00:02:36,065
+Frame is of type CGRect.
+
+53
+00:02:36,065 --> 00:02:39,592
+So, we'll do CGRectMake.
+
+54
+00:02:40,088 --> 00:02:43,464
+What the make wants is
+an X value, a Y value,
+
+55
+00:02:43,464 --> 00:02:44,847
+a width and height.
+
+56
+00:02:45,432 --> 00:02:47,664
+So we'll declare with the X,
+
+57
+00:02:47,664 --> 00:02:49,836
+the X coordinate of where we want
+
+58
+00:02:50,359 --> 00:02:52,826
+our object to be made.
+
+59
+00:02:54,795 --> 00:02:56,811
+Make it close to the center.
+
+60
+00:02:59,046 --> 00:03:01,581
+The Y wants the Y coordinate.
+
+61
+00:03:05,318 --> 00:03:07,929
+The width, how wide we want our object.
+
+62
+00:03:08,806 --> 00:03:10,688
+The height how tall.
+
+63
+00:03:11,673 --> 00:03:15,158
+All right, now we have the sizing
+
+64
+00:03:15,158 --> 00:03:17,063
+and a view declared here.
+
+65
+00:03:17,063 --> 00:03:19,432
+What I'm going to do is actually
+change my background color
+
+66
+00:03:19,432 --> 00:03:20,972
+so we could see the view.
+
+67
+00:03:29,645 --> 00:03:31,329
+Made mine blue.
+
+68
+00:03:32,345 --> 00:03:34,948
+And what we need to do
+is add this new view
+
+69
+00:03:34,948 --> 00:03:38,251
+to our super view as a sub view.
+
+70
+00:03:44,919 --> 00:03:45,923
+All right.
+
+71
+00:03:45,923 --> 00:03:48,295
+Now if we run this it should appear.
+
+72
+00:03:53,048 --> 00:03:53,913
+All right.
+
+73
+00:03:53,913 --> 00:03:56,135
+There's our view, nice and blue.
+
+74
+00:03:56,503 --> 00:03:57,198
+Okay.
+
+75
+00:03:57,198 --> 00:03:58,642
+Now it's not really doing anything.
+
+76
+00:03:58,642 --> 00:03:59,967
+We have a dynamic animator
+
+77
+00:03:59,967 --> 00:04:03,343
+but we haven't given
+any dynamic properties
+
+78
+00:04:03,343 --> 00:04:05,846
+to our view yet.
+
+79
+00:04:05,846 --> 00:04:07,748
+So to do that we're going to
+
+80
+00:04:07,748 --> 00:04:10,350
+need to declare an instance
+
+81
+00:04:10,350 --> 00:04:13,486
+of a UI dynamic item behavior.
+
+82
+00:04:26,386 --> 00:04:27,728
+All right.
+
+83
+00:04:27,728 --> 00:04:29,602
+And now what it's asking for
+
+84
+00:04:29,602 --> 00:04:32,259
+here in the declaration is the items
+
+85
+00:04:33,413 --> 00:04:35,709
+which can be an array of any object.
+
+86
+00:04:36,232 --> 00:04:38,157
+We have our view to add
+
+87
+00:04:38,157 --> 00:04:41,314
+so we'll say my view.
+
+88
+00:04:42,987 --> 00:04:44,648
+So now this is saying that
+
+89
+00:04:44,648 --> 00:04:47,988
+we have a dynamic item behavior
+
+90
+00:04:49,741 --> 00:04:53,011
+that represents my view,
+its dynamic properties.
+
+91
+00:04:53,011 --> 00:04:56,696
+So, now we'll call on our instance of
+
+92
+00:04:56,696 --> 00:04:59,146
+our dynamic item behavior.
+
+93
+00:05:00,700 --> 00:05:03,049
+And we'll set one of
+the properties for it.
+
+94
+00:05:03,049 --> 00:05:05,285
+The first one we'll set is the density
+
+95
+00:05:05,285 --> 00:05:08,941
+which comes into play for
+
+96
+00:05:09,433 --> 00:05:11,511
+deciding the mass of our object.
+
+97
+00:05:13,747 --> 00:05:17,293
+Zero is no density then
+it goes upwards until
+
+98
+00:05:17,817 --> 00:05:19,167
+as high as you want to go.
+
+99
+00:05:19,167 --> 00:05:20,787
+We'll set ours at one.
+
+100
+00:05:22,856 --> 00:05:24,725
+The next property we want to set
+
+101
+00:05:26,108 --> 00:05:27,727
+is the friction.
+
+102
+00:05:28,876 --> 00:05:32,408
+Friction deals with transfer
+of our object's energy
+
+103
+00:05:32,408 --> 00:05:34,310
+as it collides with other objects.
+
+104
+00:05:34,310 --> 00:05:35,940
+So when the collision happens
+
+105
+00:05:36,616 --> 00:05:39,305
+it will actually slow our object down.
+
+106
+00:05:40,099 --> 00:05:43,282
+One is high friction, zero is low.
+
+107
+00:05:45,789 --> 00:05:47,714
+Set it 0.5 for now.
+
+108
+00:05:48,995 --> 00:05:52,766
+Next property we want to
+set is called resistance.
+
+109
+00:05:53,720 --> 00:05:57,524
+Resistance represents
+the transfer of energy
+
+110
+00:05:57,524 --> 00:06:00,494
+as an object moves over a distance.
+
+111
+00:06:00,494 --> 00:06:04,497
+So, the longer an object
+is moving, the more...
+
+112
+00:06:04,497 --> 00:06:07,867
+As an object moves over
+time it loses its force.
+
+113
+00:06:08,106 --> 00:06:12,969
+So, this is set up on a zero to one scale
+
+114
+00:06:12,969 --> 00:06:15,108
+so we'll set it 0.5.
+
+115
+00:06:16,776 --> 00:06:18,404
+And the last property we're going to set
+
+116
+00:06:18,404 --> 00:06:20,146
+it's called elasticity.
+
+117
+00:06:22,450 --> 00:06:25,525
+And the elasticity deals with
+
+118
+00:06:25,971 --> 00:06:28,196
+when objects collide they bounce.
+
+119
+00:06:28,196 --> 00:06:30,957
+So, an elasticity of one
+
+120
+00:06:30,957 --> 00:06:33,008
+will make it to where
+when two objects collide
+
+121
+00:06:33,008 --> 00:06:34,527
+there will be a bounce.
+
+122
+00:06:34,527 --> 00:06:35,988
+And elasticity of zero it means
+
+123
+00:06:35,988 --> 00:06:38,253
+when they collide there's no bounce
+
+124
+00:06:38,700 --> 00:06:41,034
+so set it at one to start with.
+
+125
+00:06:43,069 --> 00:06:46,506
+Now we have the dynamic item behaviors,
+
+126
+00:06:46,506 --> 00:06:48,951
+what you have to do with
+any dynamic behavior
+
+127
+00:06:48,951 --> 00:06:51,213
+is add it to your dynamic animator
+
+128
+00:06:51,213 --> 00:06:53,447
+so the dynamic animator can
+
+129
+00:06:53,447 --> 00:06:55,349
+let the physics engine know
+
+130
+00:06:55,349 --> 00:06:57,717
+about these dynamic behaviors.
+
+131
+00:07:01,033 --> 00:07:02,671
+So we call add behavior
+
+132
+00:07:02,671 --> 00:07:04,558
+and the behavior we want to add.
+
+133
+00:07:06,427 --> 00:07:07,594
+All right, now if we ran this
+
+134
+00:07:07,594 --> 00:07:08,661
+we wouldn't see anything.
+
+135
+00:07:08,661 --> 00:07:11,659
+We've set up our object and
+we've set up its properties
+
+136
+00:07:11,659 --> 00:07:14,167
+as far as the physics engine understands.
+
+137
+00:07:14,167 --> 00:07:17,070
+So, now what we need to do is
+
+138
+00:07:17,070 --> 00:07:18,771
+set our objects in motion.
+
+139
+00:07:18,771 --> 00:07:21,608
+Now, we can either do this using
+
+140
+00:07:21,608 --> 00:07:23,022
+pan gesture recognizer
+
+141
+00:07:23,022 --> 00:07:25,678
+or we can do this just setting it up
+
+142
+00:07:25,678 --> 00:07:28,157
+so that there's what's called a push.
+
+143
+00:07:28,157 --> 00:07:32,051
+So, when our push is called,
+our push behavior is called
+
+144
+00:07:32,051 --> 00:07:34,521
+it will actually push our object.
+
+145
+00:07:35,619 --> 00:07:39,359
+So we'll declare it just like
+our dynamic item behavior.
+
+146
+00:07:48,568 --> 00:07:51,951
+And when we declare this
+we can tell it the items
+
+147
+00:07:51,951 --> 00:07:53,907
+just like our dynamic item behavior.
+
+148
+00:07:53,907 --> 00:07:57,076
+The items that this push
+behavior is going to work on.
+
+149
+00:07:57,076 --> 00:07:59,879
+We're going to add in my view again.
+
+150
+00:08:01,548 --> 00:08:02,448
+And the mode.
+
+151
+00:08:02,448 --> 00:08:05,685
+It's asking for the mode
+of the push behavior.
+
+152
+00:08:05,685 --> 00:08:10,685
+So we'll start with the
+UI push behavior mode dot
+
+153
+00:08:10,724 --> 00:08:12,159
+and what you get an option between
+
+154
+00:08:12,159 --> 00:08:14,327
+is continuous and instantaneous.
+
+155
+00:08:14,327 --> 00:08:17,097
+Continuous is that this push force will
+
+156
+00:08:17,097 --> 00:08:19,199
+continue to act on the object
+
+157
+00:08:19,199 --> 00:08:21,201
+over the entire run time.
+
+158
+00:08:21,201 --> 00:08:25,972
+Instantaneous means
+that as soon as it runs
+
+159
+00:08:25,972 --> 00:08:29,008
+or as soon as your push behavior is called
+
+160
+00:08:29,008 --> 00:08:31,911
+it will push the object
+and they will stop then.
+
+161
+00:08:31,911 --> 00:08:33,746
+So we'll start with instantaneous.
+
+162
+00:08:35,566 --> 00:08:36,850
+Now we need to declare
+
+163
+00:08:36,850 --> 00:08:39,920
+some of the properties
+of our push behavior.
+
+164
+00:08:41,136 --> 00:08:43,289
+First one is magnitude.
+
+165
+00:08:43,289 --> 00:08:47,106
+Magnitude represents how much force
+
+166
+00:08:47,106 --> 00:08:49,529
+is going to be given to the push.
+
+167
+00:08:49,529 --> 00:08:53,099
+So, we will set this at one to start with.
+
+168
+00:08:55,368 --> 00:08:58,171
+Now what we need to do
+is set our next property.
+
+169
+00:08:58,171 --> 00:09:00,873
+Since we have a push and we have a speed,
+
+170
+00:09:00,873 --> 00:09:04,072
+we need to tell it where
+if we want it to go.
+
+171
+00:09:04,072 --> 00:09:06,989
+We want to tell which
+direction we want it to push.
+
+172
+00:09:09,965 --> 00:09:11,892
+And what push direction takes in
+
+173
+00:09:11,892 --> 00:09:14,376
+is of type CGVector.
+
+174
+00:09:15,635 --> 00:09:17,418
+So we'll do a CGVectorMake
+
+175
+00:09:17,418 --> 00:09:21,556
+just like we did the
+CGRectMake above for our view.
+
+176
+00:09:21,556 --> 00:09:24,213
+Here it's asking for a delta X.
+
+177
+00:09:25,290 --> 00:09:29,068
+So we'll give it 1.5 and the delta Y.
+
+178
+00:09:30,416 --> 00:09:31,592
+Okay.
+
+179
+00:09:32,654 --> 00:09:35,375
+Now we have the push
+direction it's going to go.
+
+180
+00:09:35,375 --> 00:09:37,176
+Just like our dynamic item behavior
+
+181
+00:09:37,176 --> 00:09:39,679
+we have to add this to
+our dynamic animator
+
+182
+00:09:39,679 --> 00:09:43,433
+so that it can communicate
+this to the physics engine.
+
+183
+00:09:48,272 --> 00:09:50,147
+Now if we run this
+
+184
+00:09:55,079 --> 00:09:57,773
+you see that our object
+actually had a push
+
+185
+00:09:57,773 --> 00:09:59,672
+and it moved up the screen there.
+
+186
+00:10:00,366 --> 00:10:03,009
+Now, our object is moving
+
+187
+00:10:03,009 --> 00:10:06,679
+but it doesn't know about
+the view that it's in of
+
+188
+00:10:06,679 --> 00:10:08,035
+and there's no collision set.
+
+189
+00:10:08,035 --> 00:10:09,505
+So when it makes it outside the view
+
+190
+00:10:09,505 --> 00:10:10,944
+it just keeps going.
+
+191
+00:10:10,944 --> 00:10:13,007
+So, just like we have a push behavior
+
+192
+00:10:13,007 --> 00:10:14,947
+and dynamic item behavior,
+
+193
+00:10:14,947 --> 00:10:16,549
+what we're going to do now
+
+194
+00:10:16,549 --> 00:10:19,753
+is give it collision behavior
+so that it will collide
+
+195
+00:10:19,753 --> 00:10:21,721
+and not just continue moving
+
+196
+00:10:21,721 --> 00:10:23,890
+in the same direction continuously.
+
+197
+00:10:32,565 --> 00:10:35,147
+So, just like we had a push behavior class
+
+198
+00:10:35,147 --> 00:10:37,216
+and the dynamic item behavior,
+
+199
+00:10:37,216 --> 00:10:40,288
+there is this UI collision behavior class.
+
+200
+00:10:40,801 --> 00:10:44,523
+It takes in of type AnyObject array.
+
+201
+00:10:44,523 --> 00:10:47,133
+So again, we'll add in my view.
+
+202
+00:10:47,133 --> 00:10:50,827
+That's what we want to give
+the collision behavior too
+
+203
+00:10:51,851 --> 00:10:53,052
+and then we'll start saying
+
+204
+00:10:53,052 --> 00:10:55,208
+our collision behavior properties.
+
+205
+00:10:55,901 --> 00:10:59,393
+First is your collision behavior.
+
+206
+00:11:03,011 --> 00:11:05,331
+Translates reference bounds into boundary.
+
+207
+00:11:05,331 --> 00:11:08,601
+Basically it's telling it
+this is a bullion that says
+
+208
+00:11:08,601 --> 00:11:12,500
+is the reference view
+from our dynamic animator,
+
+209
+00:11:12,500 --> 00:11:15,020
+is that going to be the bounds
+
+210
+00:11:15,020 --> 00:11:17,895
+or the boundary for
+our collision behavior?
+
+211
+00:11:18,344 --> 00:11:20,947
+So, this is a bullion so we'd say true.
+
+212
+00:11:20,947 --> 00:11:23,750
+We want to collide with the boundary.
+
+213
+00:11:23,750 --> 00:11:25,399
+Right now we have our boundaries set.
+
+214
+00:11:25,399 --> 00:11:28,287
+We want to set what do we
+want our collision behavior
+
+215
+00:11:28,287 --> 00:11:29,952
+to actually collide with?
+
+216
+00:11:33,092 --> 00:11:34,761
+So that's our collision mode.
+
+217
+00:11:40,089 --> 00:11:42,525
+And it's a UI collision behavior mode.
+
+218
+00:11:42,525 --> 00:11:43,736
+We'll do dot.
+
+219
+00:11:43,736 --> 00:11:46,436
+And what we want to pick is everything.
+
+220
+00:11:46,436 --> 00:11:48,107
+This says that any other objects
+
+221
+00:11:48,107 --> 00:11:49,451
+that might be in our super view
+
+222
+00:11:49,451 --> 00:11:51,644
+that also have collision behavior
+
+223
+00:11:51,644 --> 00:11:53,446
+that it will collide with them.
+
+224
+00:11:53,446 --> 00:11:56,412
+And also it will collide
+with the boundaries
+
+225
+00:11:56,412 --> 00:11:57,511
+that we've set.
+
+226
+00:11:57,511 --> 00:12:00,286
+So, let's say collision behavior mode
+
+227
+00:12:00,286 --> 00:12:02,155
+it's got everything.
+
+228
+00:12:02,155 --> 00:12:05,291
+And last we will add
+our collision behavior
+
+229
+00:12:05,291 --> 00:12:06,960
+to our dynamic animator.
+
+230
+00:12:12,013 --> 00:12:13,833
+All right, now if we run this.
+
+231
+00:12:19,970 --> 00:12:21,102
+We have collision.
+
+232
+00:12:21,102 --> 00:12:23,409
+Now it's slowing down as you see
+
+233
+00:12:23,409 --> 00:12:25,278
+because we have friction
+
+234
+00:12:25,278 --> 00:12:28,378
+and resistance set on our object.
+
+235
+00:12:29,194 --> 00:12:31,021
+So I'm gonna go back here
+
+236
+00:12:32,359 --> 00:12:34,487
+and take friction off, run again.
+
+237
+00:12:38,460 --> 00:12:40,545
+As you see it's not slowing down as much
+
+238
+00:12:40,545 --> 00:12:41,527
+from the collision
+
+239
+00:12:41,527 --> 00:12:43,529
+but it's still slowing down over time.
+
+240
+00:12:44,558 --> 00:12:48,768
+What we'll do take off our resistance.
+
+241
+00:12:53,980 --> 00:12:56,976
+And our object continues to move freely.
+
+242
+00:12:58,211 --> 00:13:00,754
+Now in order to be able
+to capture our collisions
+
+243
+00:13:00,754 --> 00:13:02,416
+and see what's going on with our collision
+
+244
+00:13:02,416 --> 00:13:06,085
+we need to use UI collision
+behavior delegate.
+
+245
+00:13:09,516 --> 00:13:11,020
+So I'll call that up there.
+
+246
+00:13:11,020 --> 00:13:12,073
+All right, now that that's set
+
+247
+00:13:12,073 --> 00:13:16,542
+we will use a collision
+behavior delegate method call.
+
+248
+00:13:17,831 --> 00:13:19,858
+So I ran collision behavior.
+
+249
+00:13:22,035 --> 00:13:25,805
+Or what we want is its
+collision with the boundary.
+
+250
+00:13:28,708 --> 00:13:32,904
+Again, contact for our
+item with our boundary.
+
+251
+00:13:34,074 --> 00:13:36,498
+It give us our item, it's colliding
+
+252
+00:13:36,498 --> 00:13:39,785
+as well as the boundary and the point
+
+253
+00:13:39,785 --> 00:13:41,654
+where there's collisions happening.
+
+254
+00:13:48,257 --> 00:13:50,236
+What we'll do is just do a print line
+
+255
+00:13:51,282 --> 00:13:52,745
+and we'll just print the point
+
+256
+00:13:52,745 --> 00:13:54,133
+where this collision's happening.
+
+257
+00:13:54,133 --> 00:13:56,536
+So every time it collides we should see
+
+258
+00:13:56,536 --> 00:13:59,741
+a log of the point where
+this collisions is happening.
+
+259
+00:14:01,900 --> 00:14:05,411
+And there's our X and Y coordinates
+
+260
+00:14:05,411 --> 00:14:09,582
+logging there of where
+our view is colliding.
+
+261
+00:14:12,552 --> 00:14:13,680
+All right.
+
+262
+00:14:18,760 --> 00:14:20,393
+All right, now what I want to do
+
+263
+00:14:20,393 --> 00:14:22,458
+is actually create another view,
+
+264
+00:14:22,458 --> 00:14:24,517
+give it dynamic behaviors,
+
+265
+00:14:24,517 --> 00:14:26,332
+give it a collision behavior
+
+266
+00:14:26,332 --> 00:14:28,969
+and set it in the view so that
+
+267
+00:14:28,969 --> 00:14:31,296
+my view will collide with it.
+
+268
+00:14:31,296 --> 00:14:33,146
+I'm actually going to set this all up
+
+269
+00:14:33,146 --> 00:14:35,274
+so that we don't have
+to sit through all of it
+
+270
+00:14:35,274 --> 00:14:37,217
+and watch me redo the same thing,
+
+271
+00:14:37,217 --> 00:14:39,437
+and make some code refactors
+
+272
+00:14:39,437 --> 00:14:42,113
+that could make it a little
+bit easier for us to do this.
+
+273
+00:14:42,113 --> 00:14:44,550
+So, I'm going to do that real quick.
+
+274
+00:15:20,489 --> 00:15:22,655
+What I've done now is that I actually
+
+275
+00:15:22,655 --> 00:15:27,383
+separated out from viewDidLoad
+to helper functions.
+
+276
+00:15:27,383 --> 00:15:30,998
+The first to create two views.
+
+277
+00:15:31,798 --> 00:15:34,109
+My view and my view two
+
+278
+00:15:34,109 --> 00:15:36,164
+then I created a second helper function
+
+279
+00:15:36,164 --> 00:15:39,878
+to actually add all of
+our dynamic behaviors
+
+280
+00:15:40,940 --> 00:15:45,621
+and I call that within the
+creation function for the views.
+
+281
+00:15:46,258 --> 00:15:47,670
+So if we run this,
+
+282
+00:15:48,223 --> 00:15:50,769
+we should see these two views collide.
+
+283
+00:15:58,144 --> 00:16:00,192
+As you see when the
+collisions are happening
+
+284
+00:16:00,192 --> 00:16:02,361
+they're actually rotating.
+
+285
+00:16:03,763 --> 00:16:06,882
+Now there is another property
+
+286
+00:16:07,467 --> 00:16:11,403
+on dynamic behavior that controls this.
+
+287
+00:16:16,257 --> 00:16:19,945
+It allows rotation, takes a bullion.
+
+288
+00:16:20,630 --> 00:16:23,865
+If we make this false and run again.
+
+289
+00:16:28,454 --> 00:16:31,057
+You'll see there's no
+spinning on collision
+
+290
+00:16:32,363 --> 00:16:34,927
+and you have two views moving.
+
+291
+00:16:35,589 --> 00:16:36,842
+And why we did this is
+
+292
+00:16:36,842 --> 00:16:39,051
+I wanted to show one last
+
+293
+00:16:41,667 --> 00:16:44,022
+collision behavior delegate method.
+
+294
+00:16:44,731 --> 00:16:46,772
+Go to collision behavior.
+
+295
+00:16:48,918 --> 00:16:53,918
+And it is for when an item
+
+296
+00:16:54,280 --> 00:16:57,483
+makes contact with the second
+item at a certain point.
+
+297
+00:17:00,451 --> 00:17:03,055
+And what I want to do is print on
+
+298
+00:17:05,598 --> 00:17:07,193
+some text here
+
+299
+00:17:09,942 --> 00:17:11,697
+and do item one.
+
+300
+00:17:14,718 --> 00:17:16,564
+We catenate our string.
+
+301
+00:17:19,171 --> 00:17:23,777
+All right and then I want to also print
+
+302
+00:17:25,825 --> 00:17:27,446
+our item two.
+
+303
+00:17:33,080 --> 00:17:34,977
+And when I run this.
+
+304
+00:17:42,562 --> 00:17:45,531
+You see we are still
+printing out the collisions
+
+305
+00:17:45,531 --> 00:17:49,940
+with the boundaries as our objects go on,
+
+306
+00:17:49,940 --> 00:17:51,819
+oh and there's our first collision
+
+307
+00:17:51,819 --> 00:17:54,940
+with the other item.
+
+308
+00:17:54,940 --> 00:17:58,007
+So we go up here and we look.
+
+309
+00:17:58,007 --> 00:17:59,344
+We've got,
+
+310
+00:18:01,521 --> 00:18:05,107
+get the log item one and item two
+
+311
+00:18:06,000 --> 00:18:08,187
+and shows us that both those objects
+
+312
+00:18:08,187 --> 00:18:09,565
+that made a collision.
+
+313
+00:18:11,157 --> 00:18:15,674
+It has the basics for
+how to use UIKit Dynamics
+
+314
+00:18:15,674 --> 00:18:19,473
+to give objects dynamic behavior
+
+315
+00:18:19,473 --> 00:18:21,626
+and to get things to move around
+
+316
+00:18:21,626 --> 00:18:23,466
+using some physics.
+
